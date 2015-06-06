@@ -16,7 +16,7 @@ def finfo(_f):
     return data
 
 
-files = glob.glob("/home/pt/replays/playlist/*.fafreplay")
+files = glob.glob(os.path.expanduser("~/replays/playlist/*.fafreplay"))
 files.sort()
 if len(files) > 0:
     info = finfo(files[0])
