@@ -1,0 +1,22 @@
+
+cd ~/replays/playlist
+
+while true; do
+VAN=0
+for f in *.fafreplay; do
+	if [ -f $f ]; then 
+		VAN=1
+		echo $f
+		~/update_channel_title "`~/replay_details.py`"
+		~/start_replay.sh $f
+		mv $f ../finished/
+		break;
+	fi;
+done;
+if [ $VAN -eq 0 ]; then
+	sleep 60
+fi;
+done;
+
+
+echo "no replays found."

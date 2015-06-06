@@ -1,0 +1,5 @@
+API_KEY=$(cat ~/.twitch_api_key)
+
+curl -H 'Accept: application/vnd.twitchtv.v3+json' -H "Authorization: OAuth $API_KEY" \
+-d "channel[status]=$1&channel[game]=Supreme+Commander%3A+Forged+Alliance&channel[delay]=0" \
+-X PUT https://api.twitch.tv/kraken/channels/faf_test_account -so /dev/null
