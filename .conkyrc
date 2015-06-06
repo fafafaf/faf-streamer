@@ -1,0 +1,66 @@
+# Conky settings #
+background yes
+update_interval 1
+double_buffer yes
+no_buffers yes
+imlib_cache_size 10
+
+# Window specifications #
+gap_x 0
+gap_y 0
+#minimum_size 20 1920
+#maximum_width 1920
+alignment bottom
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_argb_visual no
+own_window_argb_value 0
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,above
+#own_window_type normal
+#own_window_transparent no
+#own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+#own_window_argb_visual yes
+#own_window_argb_value 0
+border_inner_margin 0
+border_outer_margin 0
+
+# Graphics settings #
+draw_shades no
+default_shade_color AAAAAA
+draw_outline no
+default_outline_color AAAAAA
+draw_borders no
+draw_graph_borders no
+default_graph_size 26 80
+show_graph_scale no
+show_graph_range no
+
+# Text settings #
+use_xft yes
+xftalpha 0
+xftfont Imperial:size=8
+text_buffer_size 256
+override_utf8_locale yes
+
+# Useful shortenings #
+short_units yes
+pad_percents  2
+top_name_width 30
+
+# Color scheme #
+default_color FFFFFF
+color1 FFFFFF
+color2 FFFFFF
+color3 FFFFFF
+color4 FFFFFF
+color5 DCDCDC
+color6 FFFFFF
+color7 FFFFFF
+color8 FFFFFF
+
+TEXT
+${time %c} \
+${offset 40}Music: ${execi 5 xwininfo -root -tree | grep -oE '"(.*)Spotify' | cut -c 2- }\
+${offset 40}Replay: ${execi 5 ~/replay_details.py}\
+${offset 40}Twitch: ${execi 60 curl -s https://api.twitch.tv/kraken/streams/faf_test_account | jq -M -c '{viewers: .stream.viewers, followers: .stream.channel.followers}' | sed -s 's/[\"\{\}]//g' | sed -s 's/\,/, /' | sed -s 's/\:/: /g'}
